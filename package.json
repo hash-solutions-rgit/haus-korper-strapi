@@ -1,37 +1,37 @@
 {
-  "name": "haus-korper",
+  "name": "haus-korper-strapi",
+  "version": "0.1.0",
   "private": true,
-  "version": "1.0.0",
-  "main": "package.json",
-  "license": "UNLICENSED",
+  "description": "A Strapi application",
   "scripts": {
-    "dev": "sanity dev",
-    "start": "sanity start",
-    "build": "sanity build",
-    "deploy": "sanity deploy",
-    "deploy-graphql": "sanity graphql deploy"
+    "build": "strapi build",
+    "deploy": "strapi deploy",
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "strapi": "strapi"
   },
-  "keywords": [
-    "sanity"
-  ],
   "dependencies": {
-    "@sanity/vision": "^3.68.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "sanity": "^3.68.3",
-    "styled-components": "^6.1.8"
+    "@strapi/plugin-cloud": "5.6.0",
+    "@strapi/plugin-users-permissions": "5.6.0",
+    "@strapi/provider-upload-aws-s3": "^5.6.0",
+    "@strapi/strapi": "5.6.0",
+    "pg": "8.8.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.0.0",
+    "styled-components": "^6.0.0"
   },
   "devDependencies": {
-    "@sanity/eslint-config-studio": "^5.0.1",
-    "@types/react": "^18.0.25",
-    "eslint": "^9.9.0",
-    "prettier": "^3.0.2",
-    "typescript": "^5.1.6"
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "typescript": "^5"
   },
-  "prettier": {
-    "semi": false,
-    "printWidth": 100,
-    "bracketSpacing": false,
-    "singleQuote": true
+  "engines": {
+    "node": ">=18.0.0 <=22.x.x",
+    "npm": ">=6.0.0"
+  },
+  "strapi": {
+    "uuid": "68f8a91a-15c5-4323-8ae5-380db9ea0ed5"
   }
 }
