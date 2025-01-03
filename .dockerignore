@@ -3,6 +3,3 @@ build
 **/node_modules/**
 dist
 
-# strapi
-.env
-.env.example
