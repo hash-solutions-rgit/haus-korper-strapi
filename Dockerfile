@@ -2,6 +2,9 @@ FROM node:20-alpine as base
 
 
 # Define build-time variables
+ARG HOST
+ARG PORT
+
 ARG APP_KEYS
 ARG API_TOKEN_SALT
 ARG ADMIN_JWT_SECRET
@@ -27,7 +30,6 @@ ARG SMTP_HOST
 ARG SMTP_PORT
 # Install dependencies only when needed
 FROM base as deps
-RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn --frozen-lockfile
@@ -37,6 +39,21 @@ FROM base as builder
 WORKDIR /app
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
+
+ENV DATABASE_CLIENT=$DATABASE_CLIENT
+ENV DATABASE_URL=$DATABASE_URL
+ENV DATABASE_PORT=$DATABASE_PORT
+ENV DATABASE_NAME=$DATABASE_NAME
+ENV DATABASE_USERNAME=$DATABASE_USERNAME
+ENV DATABASE_PASSWORD=$DATABASE_PASSWORD
+ENV DATABASE_SSL=$DATABASE_SSL
+ENV SUPABASE_API_URL=$SUPABASE_API_URL
+ENV SUPABASE_URL=$SUPABASE_URL
+ENV SUPABASE_API_KEY=$SUPABASE_API_KEY
+ENV SUPABASE_BUCKET=$SUPABASE_BUCKET
+ENV SMTP_HOST=$SMTP_HOST
+ENV SMTP_PORT=$SMTP_PORT
+
 RUN yarn build
 
 # Remove devDependencies, keep only used dependencies
