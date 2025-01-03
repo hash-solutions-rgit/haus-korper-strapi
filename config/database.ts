@@ -6,7 +6,10 @@ export default ({ env }) => {
   const connections = {
     postgres: {
       connection: {
-        connectionString: env("DATABASE_URL"),
+        connectionString: env(
+          "DATABASE_URL",
+          "postgres://postgres:postgres@localhost:5432/postgres"
+        ),
         schema: env("DATABASE_SCHEMA", "public"),
       },
       pool: {
